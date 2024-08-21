@@ -75,14 +75,119 @@
 
 
 
-// Dado esse vetor, construa outro. Ele deve conter as letras iniciais de cada nome, na sua posição original
-// [A, J, R, A]
+//CLOSURES
 
-const nomes = ['Ana', 'João', 'Rodrigo', 'Angelica'];
-const iniciais = [];
 
-for (let i = 0; i < nomes.length; i++) {
-    iniciais.push(nomes[i][0]);
+//FUNÇÃO DE ALTA ORDEM (CHAMANDO UMA FUNÇÃO DENTRO DE OUTRA FUNÇÃO)
+function f (funcao){
+    console.log('f')
+    funcao()()()
+    return () => console.log('i')
 }
 
-console.log(iniciais);
+function g(){
+    console.log('g')
+    return function(){
+        console.log('Fui criada por g')
+        return () => {console.log('h'); return () => 'k'}
+    }
+}
+
+f(g())()
+
+/*------------------------------------------ */
+
+//FUNÇÃO PODE SER ATRIBUIDA EM UMA VARIAVEL
+// let umaFuncao = function(){
+//     console.log('sou uma função')
+// }
+// umaFuncao()
+
+
+/*-------------------------------------- */
+
+//TIPOS DE FUNÇÕES
+//Funções regulares e arrow functions
+
+//ARROW FUNCTIONS
+//Exemplo 4 
+    // const ehPar = n => n % 2 === 0
+
+//Exemplo 3
+    // const f = () => {
+    //     (return) //ERRO DE SINTAXE
+    //     (2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 )
+    // }
+    // console.log(f())
+
+//Exemplo 2 (sem usar return (quando n usa chaves (TEM APENA 1 INSTRUÇÃO PRA OMITIR A {} )))
+    // const dobro = n => n * 2
+    // console.log(dobro(5))
+
+//Exemplo 1
+        // const hello = () => console.log('Hello')
+        // hello()
+        // const helloNome = (nome, idade) => console.log('Oi, ' + nome)
+
+
+//FUNÇÃO REGULAR
+//Exemplo 4 de função (parâmetros com valore padrão)
+    // const triplo = function (n = 5){
+    //     return 3 * n
+    // }
+    // console.log(triplo(6))
+    // console.log(triplo(undefined))
+
+//Exemplo 3 de função anôima (sem nome)
+    // cont dobro function(n){
+    //      return 2 *n
+    // }
+    // console.log(dobro(3))
+
+//Exemplo 2
+    // function somar(a,b){
+    //     return a + b
+    // }
+    // console.log(soma(1, 2))
+
+//Exemplo 1
+    // function hello(){
+    //     console.log('oi')
+    // }
+    // hello()
+    // function hello(nome){
+    //     console.log('Oi, ' + nome)
+    // }
+    // hello('Ana')
+
+//-----------------------------------------------//
+
+//FUNÇÃO "REDUCE"//
+// const numeros = [1, 2, 3, 4]
+// const soma =numeros.reduce((ac, v) => ac + v)
+// console.log(soma)
+
+//------------------------------------------------//
+
+//FUNÇÃO "SOME"
+// const nome = ['Ana', 'João', 'Rodrigo', 'Angelica']
+// Verifica se pelo meno um começa com a
+// const resultado = nomes.some(n => n[0] === 'A' || n[0] === 'a')
+// console.log(resultado)
+
+//--------------------------------------------------//
+
+//FUNÇÃO "EVERY" nesse caso verifica se TODOS começa com A ou a
+// const resultado = nomes.every(n => n[0] === 'A' || n[0] === 'a')
+//console.log(resultado)
+
+//------------------------------------------------------//
+
+//let m = 1
+//const numeros = [1, 2, 3,]
+//console.log(numeros.map((valor, indice, numeros) => valor * (indice +2)))
+
+/*Dado esse vetor, produzir outro. Ele deve conter a letra
+inicial de cada nome, na sua posição original.*/
+// const nome = ['Ana', 'João', 'Rodrigo', 'Angelica']
+//const listaResultante = nomes.map(x => x[0])
