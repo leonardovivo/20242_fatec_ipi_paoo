@@ -79,21 +79,21 @@
 
 
 //FUNÇÃO DE ALTA ORDEM (CHAMANDO UMA FUNÇÃO DENTRO DE OUTRA FUNÇÃO)
-function f (funcao){
-    console.log('f')
-    funcao()()()
-    return () => console.log('i')
-}
+// function f (funcao){
+//     console.log('f')
+//     funcao()()()
+//     return () => console.log('i')
+// }
 
-function g(){
-    console.log('g')
-    return function(){
-        console.log('Fui criada por g')
-        return () => {console.log('h'); return () => 'k'}
-    }
-}
+// function g(){
+//     console.log('g')
+//     return function(){
+//         console.log('Fui criada por g')
+//         return () => {console.log('h'); return () => 'k'}
+//     }
+// }
 
-f(g())()
+// f(g())()
 
 /*------------------------------------------ */
 
@@ -191,3 +191,125 @@ f(g())()
 inicial de cada nome, na sua posição original.*/
 // const nome = ['Ana', 'João', 'Rodrigo', 'Angelica']
 //const listaResultante = nomes.map(x => x[0])
+
+
+// function f(){
+//     let nome = 'João'
+//     function g(){
+//         console.log(nome)
+//     }
+//     g()
+// }
+// f()
+
+
+// function ola(){
+//     let nome = 'João'
+//     return function(){
+//         console.log(`Olá, ${nome}`)
+//     }
+// }
+
+// const res = ola()
+// res()
+
+
+// function eAgora(){
+//     let cont = 1
+//     function f1(){
+//         console.log(cont)
+//     }
+//     cont ++
+//     function f2(){
+//         console.log(cont)
+//         cont++
+//     }
+    
+//     cont++
+
+//     return [f1, f2]
+// }
+// let funcoes = eAgora()
+// funcoes[0]()
+// funcoes[1]()
+
+
+// Objetos JS literais (JSON: Javascript Object Notation)
+// Uma pessoa que se chama João e tem 17 anos
+// let pessoa = {
+//     nome: 'João',
+//     idade: 17
+// }
+
+// console.log(pessoa.nome)
+// console.log(pessoa['idade'])
+
+
+// Uma pessoa que se chama Maria, tem 21 anos e mora na rua B, número 64
+// let pessoa = {
+//     nome: 'Maria',
+//     idade: 21,
+//     endereco: {
+//         logadouro: 'Rua B',
+//         numero: 64
+//     }
+// }
+// console.log(pessoa.endereco.logadouro)
+// console.log(pessoa['endereco']['numero'])
+// console.log(pessoa.endereco[logadouro])
+// console.log(pessoa['endereco'].numero)
+
+
+// Seu nome
+// Seu RA
+// Seu e-mail
+
+// let pessoa = {
+//     'Seu nome': 'Alicia'
+// }
+// console.log['Seu nome']
+
+
+// Uma concessionaria que tem CNPJ e endereço, com rua, numero e bairro. Ela tem alguns carros em estoque. Cada carro tem marca, modelo e ano de fabricação
+// let concessionaria = {
+//     nome: 'Bossini Automóveis',
+//     CNPJ: '12.345.678/0001-23',
+//     endereco: {
+//         rua: 'Avenida Bossini',
+//         numero: 123,
+//         bairro: 'Vila Machion'
+//     },
+//     estoque: [
+//         {
+//             marca: 'Toyota',
+//             modelo: 'Corolla',
+//             fabricacao: 2020
+//         },
+//         {
+//             marca: 'Honda',
+//             modelo: 'Civic',
+//             fabricacao: 2019
+//         },
+//     ]
+// }
+// Exibir Corolla
+// console.log(concessionaria.estoque[0].modelo)
+
+// Faça um For of, mostrando o modelo de cada veículo
+// for (let carro of concessionaria.estoque) {
+//     console.log(carro.modelo)
+// }
+
+
+// Operação somar, que soma dois valores, implementada com uma arrow function que não usa return
+// Operação subtrair, que subtrai dois valores, implementada com uma function regular
+
+// let calculadora = {
+//     somar: (a, b) => a + b,
+//     subtrair: function(a, b) {
+//         return a - b
+//     }
+// }
+
+// console.log(calculadora.somar(5, 5))
+// console.log(calculadora.subtrair(6, 5))
