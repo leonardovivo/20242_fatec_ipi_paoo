@@ -313,3 +313,56 @@ inicial de cada nome, na sua posição original.*/
 
 // console.log(calculadora.somar(5, 5))
 // console.log(calculadora.subtrair(6, 5))
+
+
+// sincrona e assincrona
+
+
+// console.log('Eu primeiro')
+// console.log('Depois eu')
+// console.log('Serei sempre o ultimo...:(')
+
+// const a = 2 + 7
+// const b = 6 + 7
+// console.log(a + b)
+
+// function demorada (){
+//     const dataAtualMais25Segundos = new Date().getTime() + 2000
+//     while (new Date().getTime() <= dataAtualMais25Segundos); // NO OP
+//     const d = 2 + 5
+//     return d
+// }
+// const a = 2 + 3
+// const b = 8 + 9
+// setTimeout(() => {
+//     const d = demorada()
+//     console.log(`Demorada: ${d}`)
+// }, 0)
+// const e = a + b + 5
+// const atualMais10 = new Date().getTime() + 10000
+// while (new Date().getTime() <= atualMais10);
+// console.log(e)
+
+
+const fs = require('fs')
+const abrirArquivo = function(nomeArquivo){
+    const exibirConteudo = function(erro, conteudo){
+        if (erro) {
+            console.log(`Erro: ${erro}`)
+        } else {
+            console.log(`Conteudo: ${conteudo.toString()}`)
+            const dobro = Number(conteudo.toString()) * 2
+            const finalizar = (erro) => {
+                if (erro) {
+                    console.log(`Erro na escrita: ${erro}`)
+                } else {
+                    console.log('Escreveu com sucesso')
+                }
+            }
+            fs.writeFile('dobro.txt', dobro.toString(), finalizar)
+        }
+    }
+    fs.readFile(nomeArquivo, exibirConteudo)
+    console.log('Fazendo outras coisas...')
+}
+abrirArquivo('arquivo.txt')
