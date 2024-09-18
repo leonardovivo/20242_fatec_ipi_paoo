@@ -344,25 +344,66 @@ inicial de cada nome, na sua posição original.*/
 // console.log(e)
 
 
-const fs = require('fs')
-const abrirArquivo = function(nomeArquivo){
-    const exibirConteudo = function(erro, conteudo){
-        if (erro) {
-            console.log(`Erro: ${erro}`)
-        } else {
-            console.log(`Conteudo: ${conteudo.toString()}`)
-            const dobro = Number(conteudo.toString()) * 2
-            const finalizar = (erro) => {
-                if (erro) {
-                    console.log(`Erro na escrita: ${erro}`)
-                } else {
-                    console.log('Escreveu com sucesso')
-                }
-            }
-            fs.writeFile('dobro.txt', dobro.toString(), finalizar)
-        }
-    }
-    fs.readFile(nomeArquivo, exibirConteudo)
-    console.log('Fazendo outras coisas...')
-}
-abrirArquivo('arquivo.txt')
+// const fs = require('fs')
+// const abrirArquivo = function(nomeArquivo){
+//     const exibirConteudo = function(erro, conteudo){
+//         if (erro) {
+//             console.log(`Erro: ${erro}`)
+//         } else {
+//             console.log(`Conteudo: ${conteudo.toString()}`)
+//             const dobro = Number(conteudo.toString()) * 2
+//             const finalizar = (erro) => {
+//                 if (erro) {
+//                     console.log(`Erro na escrita: ${erro}`)
+//                 } else {
+//                     console.log('Escreveu com sucesso')
+//                 }
+//             }
+//             fs.writeFile('dobro.txt', dobro.toString(), finalizar)
+//         }
+//     }
+//     fs.readFile(nomeArquivo, exibirConteudo)
+//     console.log('Fazendo outras coisas...')
+// }
+// abrirArquivo('arquivo.txt')
+
+
+
+// 1 + 2 + 3 ... + n-2 + n-1 + n
+// function calculoDemorado(n) {
+//     const p = new Promise(function(resolve, reject){
+//         let ac = 0
+//         for (let i = 1; i <= n; i++) ac += i
+//         resolve(ac)
+//     })
+//     return p
+// }
+
+// const minhaPromise = calculoDemorado(10)
+// minhaPromise.then(res => {
+//     console.log(`Resultado: ${res}`)
+// })
+
+// const calculoRapidinho = (n) => {
+//     // Verifique o valor de n
+//     if (n < 0) {
+//         // Se for negativo, devolva uma promise já rejected que da acesso ao texto "somente valores positivos, por favor"
+//         return Promise.reject('Somente valores positivos, por favor')
+//     }
+//     else{
+//     // Caso contrário, devolva a promise que ja temos no momento
+//     return Promise.resolve((n / 2) * (n + 1))
+//     }
+// }
+
+// calculoRapidinho(10)
+//     .then(res => console.log(`Resultado: ${res}`))
+//     .finally(() => console.log('Terminando...'))
+//     .catch(err => console.error(`Erro: ${err}`))
+
+
+// calculoRapidinho(-5)
+//     .then(res => console.log(`Resultado: ${res}`))
+//     .catch(err => console.error(`Erro: ${err}`))
+//     .finally(() => console.log('Terminando...'))
+   
