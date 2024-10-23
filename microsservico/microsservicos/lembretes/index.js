@@ -4,7 +4,7 @@ app.use(express.json())
 
 let id = 2
 
-const lembretes = {
+const baseLembretes = {
     1: {
         id: 1,
         texto: 'Fazer cafe'
@@ -25,16 +25,15 @@ const lembretes = {
 
 //GET /Lembretes
 app.get('/lembretes', (req, res) => {
-    console.log('passou por aqui')
-    res.json(lembretes)
+    res.json(baseLembretes)
 })
 
 //POST /Lembretes
 app.post('/lembretes', function(req, res){
     const texto = req.body.texto
-    lembretes[id] = {id: id, texto: texto}
+    baseLembretes[id] = {id: id, texto: texto}
     id++
-    res.status(201).json(lembretes)
+    res.status(201).json(baseLembretes)
 })
 
 const port =  4000
