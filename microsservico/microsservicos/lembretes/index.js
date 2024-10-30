@@ -1,3 +1,4 @@
+const axios = require('axios')
 const express = require ('express')
 const app = express()
 app.use(express.json())
@@ -29,11 +30,26 @@ app.get('/lembretes', (req, res) => {
 })
 
 //POST /Lembretes
-app.post('/lembretes', function(req, res){
+app.post('/lembretes', async function(req, res) {
     const texto = req.body.texto
-    baseLembretes[id] = {id: id, texto: texto}
+    const lembrete = {id: id, texto: texto }
+    baseLembretes[id] = lembrete
     id++
+    await axios.post('http://localhost:10000/eventos', {
+        type: 'LembreteCriado',
+        payload: lembrete
+    })
     res.status(201).json(baseLembretes)
+})
+
+
+//escrever o endpoint da caixinha amarela
+//ou seja, receber um evento
+//o que fazer com ele? apenas log
+//nao esqueca de responder a quem te enviou a requisicao
+app.post('/eventos', (req, res) => {
+    console.log('Evento recebido:', req.body)
+    res.status(200).send({ msg: 'Evento recebido' })
 })
 
 const port =  4000
