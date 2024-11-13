@@ -1,55 +1,52 @@
 const axios = require('axios')
-const express = require ('express')
+const express = require('express')
 const app = express()
 app.use(express.json())
 
-let id = 2
-
-const baseLembretes = {
-    1: {
-        id: 1,
-        texto: 'Fazer cafe'
-    }
-}
 /*
-    {
-        1:{
-            id: 1,
-            texto: fazer cafe
-        },
-        2:{
-            id: 2,
-            texto: nadar
-        }
+  {
+    1: {
+      id: 1,
+      texto: fazer cafe
+    },
+    2: {
+      id: 2,
+      texto: nadar
     }
+  }
 */
-
-//GET /Lembretes
+let id = 2
+const baseLembretes = {
+  1: {
+    id: 1,
+    texto: 'Fazer café'
+  }
+}
+//GET /lembretes
 app.get('/lembretes', (req, res) => {
-    res.json(baseLembretes)
+  res.status(200).json(baseLembretes)  
 })
-
-//POST /Lembretes
-app.post('/lembretes', async function(req, res) {
-    const texto = req.body.texto
-    const lembrete = {id: id, texto: texto }
-    baseLembretes[id] = lembrete
-    id++
-    await axios.post('http://localhost:10000/eventos', {
-        type: 'LembreteCriado',
-        payload: lembrete
-    })
-    res.status(201).json(baseLembretes)
+//POST /lembretes
+app.post('/lembretes', async function(req, res){
+  const texto = req.body.texto
+  const lembrete = { id: id, texto: texto }
+  baseLembretes[id] = lembrete
+  id++
+  await axios.post('http://localhost:10000/eventos', {
+    type: 'LembreteCriado',
+    payload: lembrete
+  })
+  res.status(201).json(baseLembretes)
 })
-
 
 //escrever o endpoint da caixinha amarela
 //ou seja, receber um evento
 //o que fazer com ele? apenas log
-//nao esqueca de responder a quem te enviou a requisicao
+//não esqueça de responder a quem te enviou a requisição
 app.post('/eventos', (req, res) => {
-    console.log('Evento recebido:', req.body)
-    res.status(200).send({ msg: 'Evento recebido' })
+  const evento = req.body
+  console.log(evento)
+  res.end()
 })
 
 const port =  4000
