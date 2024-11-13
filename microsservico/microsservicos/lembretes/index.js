@@ -15,13 +15,8 @@ app.use(express.json())
     }
   }
 */
-let id = 2
-const baseLembretes = {
-  1: {
-    id: 1,
-    texto: 'Fazer café'
-  }
-}
+let id = 1
+const baseLembretes = {}
 //GET /lembretes
 app.get('/lembretes', (req, res) => {
   res.status(200).json(baseLembretes)  
@@ -44,8 +39,11 @@ app.post('/lembretes', async function(req, res){
 //o que fazer com ele? apenas log
 //não esqueça de responder a quem te enviou a requisição
 app.post('/eventos', (req, res) => {
+    try{
   const evento = req.body
   console.log(evento)
+    }
+    catch(e){}
   res.end()
 })
 

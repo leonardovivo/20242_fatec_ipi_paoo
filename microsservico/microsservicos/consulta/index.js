@@ -1,4 +1,5 @@
 const express = require('express')
+const axios = require('axios')
 const app = express()
 app.use(express.json())
 
@@ -16,6 +17,12 @@ const funcoes = {
         const observacoes = baseConsolidada[observacao.lembreteId] ['observacoes'] || []
         observacoes.push(observacao) //precisa do vinculo 'apontar para observacoes
         baseConsolidada[observacao.lembreteId] ['observacoes'] = observacoes
+    },
+
+    ObservacaoAtualizada: (observacao) => {
+        const observacoes = baseConsolidada[observacao.lembreteId]['observacoes']
+        const indice = observacoes.findIndex(o => o.id === observacao.id)
+        observacoes[indice] = observacao
     }
 }
 
@@ -28,11 +35,22 @@ app.get('/lembretes', (req, res) => {
 
 //post /eventos
 app.post('/eventos', (req, res) => {
-    //pegar o tipo de evento, chamar a função e 
+    try{
+    //pegar o tipo de evento, chamar a função e
     const evento = req.body
     funcoes[evento.type](evento.payload)
+    }
+    catch(e){}
     res.status(200).end()
 })
 
 const port = 6000
-app.listen(port, () => console.log(`Consulta. Porta ${port}`))
+app.listen(port, async () => {console.log(`Consulta. Porta ${port}`)
+const resp = await axios.get('http://localhost:10000/eventos')
+resp.data.forEach((evento, indice, colecao) => {
+    try{
+        funcoes[evento.type](evento.payload)
+    }
+    catch(e){}
+})
+})

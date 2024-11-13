@@ -3,14 +3,39 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-app.post('/eventos',(req, res) => {
+
+const eventos = []
+
+//endpoint que devolve a base de eventos perdidos
+app.get('/eventos', (req, res) => {
+  res.json(eventos)
+})
+
+
+app.post('/eventos', async (req, res) => {
   const evento = req.body
+  EventSource.push(evento)
   console.log(evento)
-  axios.post('http://localhost:4000/eventos', evento)
+  try{
+  await axios.post('http://localhost:4000/eventos', evento)
+  }
+  catch(e){}
   //ex: entregar o evento para o observações
-  axios.post('http://localhost:5000/eventos', evento)
-  axios.post('http://localhost:6000/eventos', evento)
-  axios.post('http://localhost:7000/eventos', evento)
+  try{
+  await axios.post('http://localhost:5000/eventos', evento)
+  }
+  catch(e){}
+  
+  try{
+  await axios.post('http://localhost:6000/eventos', evento)
+  }
+  catch(e){}
+ 
+  try{
+  await axios.post('http://localhost:7000/eventos', evento)
+  }
+  catch(e){}
+  
   res.status(200).json({msg: 'ok'})
 })
 
